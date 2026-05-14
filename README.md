@@ -53,7 +53,7 @@ claude-config/
   docs/
     ideas/           # ブレスト・壁打ちメモ
   CLAUDE.md          # プロジェクト運用ルール
-  mcp_config.json    # MCP サーバー設定（Context7 / Playwright / Chrome DevTools）
+  .mcp.json          # MCP サーバー設定（Context7 / Playwright / Chrome DevTools）
   prompt.md          # よく使うコマンドのカタログ
 ```
 
@@ -77,7 +77,7 @@ rm -rf .git && git init
 
 - `package.json` — プロジェクト名・依存関係
 - `.devcontainer/devcontainer.json` — 開発環境
-- `mcp_config.json` — 使用する MCP サーバーと環境変数
+- `.mcp.json` — 使用する MCP サーバーと環境変数
 - `LICENSE.txt` — ライセンス
 
 ---
@@ -120,7 +120,13 @@ rm -rf .git && git init
 | `playwright` | ブラウザ操作・E2E テスト支援 |
 | `chrome-devtools` | Chrome DevTools プロトコル連携 |
 
-`mcp_config.json` の `REPLACE_ME_OR_SET_ENV` を環境変数または直値に置き換えて使う。
+`.mcp.json` 内で `${VAR_NAME}` 構文を使用しており、Claude Code 起動時にシェルの環境変数で自動置換される。
+Context7 を使う場合は以下を `.env` または OS 側で設定する：
+
+```bash
+export UPSTASH_REDIS_REST_URL="https://..."
+export UPSTASH_REDIS_REST_TOKEN="..."
+```
 
 ---
 

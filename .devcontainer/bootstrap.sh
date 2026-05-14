@@ -73,8 +73,8 @@ if [[ "$SKIP_HUSKY" != "1" ]] && [[ -d .husky ]] && [[ -f package.json ]]; then
 fi
 
 # 4) MCP-related setup.
-if [[ -f mcp_config.json ]]; then
-  if grep -q "@playwright/mcp" mcp_config.json; then
+if [[ -f .mcp.json ]]; then
+  if grep -q "@playwright/mcp" .mcp.json; then
     if [[ "$SKIP_PLAYWRIGHT" != "1" ]]; then
       log "Playwright MCP detected. Installing Chromium..."
       npx -y playwright install chromium || warn "Playwright Chromium install failed. Run manually if needed."
@@ -83,12 +83,9 @@ if [[ -f mcp_config.json ]]; then
     fi
   fi
 
-  if grep -q "@upstash/context7-mcp" mcp_config.json; then
-    if grep -q "REPLACE_ME_OR_SET_ENV" mcp_config.json; then
-      warn "Context7 placeholders are still present in mcp_config.json."
-    fi
+  if grep -q "@upstash/context7-mcp" .mcp.json; then
     if [[ -z "${UPSTASH_REDIS_REST_URL:-}" || -z "${UPSTASH_REDIS_REST_TOKEN:-}" ]]; then
-      warn "UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN are not set in current shell."
+      warn "UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN are not set; Context7 MCP will fail at startup."
     fi
   fi
 fi

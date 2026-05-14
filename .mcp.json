@@ -11,8 +11,8 @@
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"],
       "env": {
-        "UPSTASH_REDIS_REST_URL": "REPLACE_ME_OR_SET_ENV",
-        "UPSTASH_REDIS_REST_TOKEN": "REPLACE_ME_OR_SET_ENV"
+        "UPSTASH_REDIS_REST_URL": "${UPSTASH_REDIS_REST_URL}",
+        "UPSTASH_REDIS_REST_TOKEN": "${UPSTASH_REDIS_REST_TOKEN}"
       }
     },
     "playwright": {
